@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xs-12">
+    <button class="btn btn-success" (click)="onNewPlayer()">New Player</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-12">
+    <table class="table">
+      <thead>
+      <tr>
+        <th class="col-md-4">Name</th>
+        <th class="col-md-2">Matches</th>
+        <th class="col-md-2">Average</th>
+        <th class="col-md-2">Team</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr style="cursor: pointer;" [@user-list] [routerLink]="[user.id]" routerLinkActive="active" *ngFor="let user of users">
+        <td class="col-md-4">{{ user.name }}</td>
+        <td class="col-md-2">{{ user.matches }}</td>
+        <td class="col-md-2">{{ user.average }}</td>
+        <td class="col-md-2">{{ getTeamName(user.team) }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

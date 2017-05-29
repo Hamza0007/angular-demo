@@ -4,16 +4,15 @@ import {TeamsComponent} from "./teams.component";
 import {TeamDetailComponent} from "./team-detail/team-detail.component";
 import {TeamListComponent} from "./team-list/team-list.component";
 import {TeamsRoutingModule} from "./teams-routing.module";
-import {DropDownDirective} from "../shared/dropdown.directive";
 import { TeamEditComponent } from './team-edit/team-edit.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
     TeamsComponent,
     TeamDetailComponent,
     TeamListComponent,
-    DropDownDirective,
     TeamEditComponent
   ],
   imports: [
@@ -23,7 +22,8 @@ import {ReactiveFormsModule} from "@angular/forms";
      */
     CommonModule,
     TeamsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 

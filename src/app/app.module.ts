@@ -11,13 +11,16 @@ import { UsersComponent } from './users/users.component';
 import {TeamsService} from "./teams/teams.service";
 import {DataStorageService} from "./shared/data-storage.service";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { UserDetailComponent } from './users/user-detail/user-detail.component';
+import { UserListComponent } from './users/user-list/user-list.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import {UsersService} from "./users/users.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    HomeComponent,
-    UsersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,12 +38,12 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
       },
       {
         path: 'users',
-        component: UsersComponent
+        loadChildren: './users/users.module#UsersModule' // for lazy loading(load a component module only when its path is entered else not)
       },
       { path: '**', component: HomeComponent }
     ])
   ],
-  providers: [TeamsService, DataStorageService],
+  providers: [TeamsService, DataStorageService, UsersService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
