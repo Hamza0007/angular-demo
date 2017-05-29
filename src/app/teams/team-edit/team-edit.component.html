@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" id="name" class="form-control" formControlName="name">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="country">Country:</label>
+            <input type="text" id="country" class="form-control" formControlName="country">
+          </div>
+        </div>
+      </div>
+      <div formArrayName="users">
+        <div class="row">
+          <div class="col-md-12">
+            <table class="table" style="margin: 0; padding: 0">
+              <thead>
+              <tr class="row">
+                <th class="col-md-4">Name</th>
+                <th class="col-md-2">Matches</th>
+                <th class="col-md-2">Average</th>
+                <th class="col-md-3">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class='row' [@list1] *ngFor="let playerControl of getTeamFormPlayersControls(teamForm); let i = index" [formGroupName]="i" style="margin-top: 10px;">
+                <input type="text" class="form-control hide" formControlName="id">
+                <td class="col-md-4">
+                  <input type="text" class="form-control" formControlName="name">
+                </td>
+                <td  class="col-md-2">
+                  <input type="number" class="form-control" formControlName="matches">
+                </td>
+                <td class="col-md-2">
+                  <input type="number" class="form-control" formControlName="average">
+                </td>
+                <td class="col-xs-3">
+                  <button class="btn btn-danger" type="button" (click)="onDeletePlayer(i)">X</button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-xs-12">
+            <button class="btn btn-success" type="button" (click)="onAddPlayer()">Add Player</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!teamForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
