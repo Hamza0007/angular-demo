@@ -2,6 +2,7 @@ import { Injectable, OnInit} from "@angular/core";
 import { Http, Response, RequestOptions, Headers } from "@angular/http";
 import { TeamsService } from "../teams/teams.service";
 import { UsersService } from "../users/users.service";
+import {environment} from "../../environments/environment";
 
 @Injectable()
 
@@ -34,7 +35,7 @@ export class DataStorageService {
 
   getTeams() {
     this.setHeaders();
-    return this.http.get('http://localhost:3000/api/v1/teams', this.options).map(
+    return this.http.get(environment.token_auth_config["apiBase"] + '/api/v1/teams', this.options).map(
       (response: Response) => {
         this.teamService.setTeams(response.json());
         return response.json();
@@ -48,7 +49,7 @@ export class DataStorageService {
 
   addTeam(newTeam: Object) {
     this.setHeaders();
-    return this.http.post('http://localhost:3000/api/v1/teams', newTeam, this.options).map(
+    return this.http.post(environment.token_auth_config["apiBase"] + '/api/v1/teams', newTeam, this.options).map(
       (response: Response) => {
         this.getTeams();
         return response.json();
@@ -62,7 +63,7 @@ export class DataStorageService {
 
   updateTeam(id: number, newTeam: Object) {
     this.setHeaders();
-    return this.http.put('http://localhost:3000/api/v1/teams/' + id, newTeam, this.options).map(
+    return this.http.put(environment.token_auth_config["apiBase"] + '/api/v1/teams' + id, newTeam, this.options).map(
       (response: Response) => {
         this.getTeams();
         return response.json();
@@ -76,7 +77,7 @@ export class DataStorageService {
 
   deleteTeam(id: number) {
     this.setHeaders();
-    return this.http.delete('http://localhost:3000/api/v1/teams/' + id, this.options).map(
+    return this.http.delete(environment.token_auth_config["apiBase"] + '/api/v1/teams' + id, this.options).map(
       (response: Response) => {
         this.getTeams();
         return response.json();
@@ -90,7 +91,7 @@ export class DataStorageService {
 
   getUsers() {
     this.setHeaders();
-    return this.http.get('http://localhost:3000/api/v1/users', this.options).map(
+    return this.http.get(environment.token_auth_config["apiBase"] + '/api/v1/users', this.options).map(
       (response: Response) => {
         this.userService.setUsers(response.json());
         return response.json();
@@ -104,7 +105,7 @@ export class DataStorageService {
 
   addUser(user: Object) {
     this.setHeaders();
-    return this.http.post('http://localhost:3000/api/v1/users', user, this.options).map(
+    return this.http.post(environment.token_auth_config["apiBase"] + '/api/v1/users', user, this.options).map(
       (response: Response) => {
         this.getUsers();
         return response.json();
@@ -118,7 +119,7 @@ export class DataStorageService {
 
   updateUser(id: number, user: Object) {
     this.setHeaders();
-    return this.http.put('http://localhost:3000/api/v1/users/' + id, user, this.options).map(
+    return this.http.put(environment.token_auth_config["apiBase"] + '/api/v1/users' + id, user, this.options).map(
       (response: Response) => {
         this.getUsers();
         return response.json();
@@ -132,7 +133,7 @@ export class DataStorageService {
 
   deleteUser(id: number) {
     this.setHeaders();
-    return this.http.delete('http://localhost:3000/api/v1/users/' + id, this.options).map(
+    return this.http.delete(environment.token_auth_config["apiBase"] + '/api/v1/users' + id, this.options).map(
       (response: Response) => {
         this.getUsers();
         return response.json();
