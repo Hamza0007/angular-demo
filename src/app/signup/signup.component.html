@@ -1,0 +1,31 @@
+<div class="container m-t-100 center">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Sign Up</h3>
+        </div>
+        <div class="panel-body">
+          <!-- Template Approach -->
+          <form (ngSubmit)="onSignUpSubmit()" #f="ngForm" > <!-- Template approach -->
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="email" required name='email' [(ngModel)]="signUpUser.email" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input id="password" type="password" required name='password' [(ngModel)]="signUpUser.password" class="form-control">
+            </div>
+            <div class="form-group">
+              <label for="password_confirmation">Password Confirmation</label>
+              <input id="password_confirmation" type="password" required name='password_confirmation' [(ngModel)]="signUpUser.passwordConfirmation" class="form-control">
+            </div>
+            <button class="btn btn-primary form-control" type="submit" [disabled]="!(f.valid) && f.touched">SignUp</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

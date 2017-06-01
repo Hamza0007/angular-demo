@@ -9,6 +9,18 @@
         <li routerLinkActive="active"><a routerLink="/teams">Teams</a></li>
         <li routerLinkActive="active"><a routerLink="/users">Users</a></li>
       </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!tokenAuthService.userSignedIn()">
+          <a routerLink="/signin">LogIn</a>
+        </li>
+        <li *ngIf="!tokenAuthService.userSignedIn()">
+          <a routerLink="/signup">SignUp</a>
+        </li>
+        <li *ngIf="tokenAuthService.userSignedIn()">
+          <a (click)="onLogOut()">LogOut</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

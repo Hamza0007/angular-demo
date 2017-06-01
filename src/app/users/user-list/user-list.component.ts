@@ -35,8 +35,10 @@ export class UserListComponent implements OnInit, OnDestroy {
 
   users: Array<Object>;
   subscription: Subscription;
+  filteredUser = '';
 
-  constructor(private dataStorageService: DataStorageService, private userService: UsersService, private router: Router, private route: ActivatedRoute ) { }
+  constructor(private dataStorageService: DataStorageService, private userService: UsersService,
+              private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit() {
 
@@ -58,11 +60,15 @@ export class UserListComponent implements OnInit, OnDestroy {
   }
 
   onNewPlayer() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(['user/new']);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  onUserClick(id: number) {
+    this.router.navigate(["/user/" + id]);
   }
 
 }

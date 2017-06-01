@@ -1,8 +1,15 @@
 import { Subject } from "rxjs";
+import {Injectable} from "@angular/core";
+import {Angular2TokenService} from "angular2-token";
+
+@Injectable()
+
 export class UsersService {
 
   private users: Array<Object>;
   usersChanged = new Subject<Array<Object>>();
+
+  constructor(private tokenAuthService: Angular2TokenService) { }
 
   setUsers(users: Array<Object>) {
     this.users = users;
@@ -19,6 +26,10 @@ export class UsersService {
         return user;
       }
     }
+  }
+
+  isAdmin() {
+    return this.tokenAuthService.currentUserData["role"] === 'admin';
   }
 
 }

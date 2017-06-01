@@ -56,13 +56,14 @@ export class TeamEditComponent implements OnInit {
   }
 
   private initForm() {
-    let teamName = '', teamCountry = '';
+    let teamName = '', teamCountry = '', teamImage = '';
     let teamPlayers = new FormArray([]);
 
     if(this.editMode) {
       const team = this.teamService.getTeam(this.id);
       teamName = team['name'];
       teamCountry = team['country'];
+      teamImage = team['image'];
       if(team['users']) {
         for(let user of team['users']) {
           teamPlayers.push(
@@ -84,6 +85,7 @@ export class TeamEditComponent implements OnInit {
     this.teamForm = new FormGroup({
       'name' : new FormControl(teamName, Validators.required),
       'country' : new FormControl(teamCountry, Validators.required),
+      'image' : new FormControl(teamImage, Validators.required),
       'users' : teamPlayers
     });
   }
@@ -92,6 +94,7 @@ export class TeamEditComponent implements OnInit {
     const newTeam = {
       'name': this.teamForm.value['name'],
       'country': this.teamForm.value['country'],
+      'image': this.teamForm.value['image'],
       'users_attributes': this.teamForm.value['users']
     };
 
@@ -132,5 +135,6 @@ export class TeamEditComponent implements OnInit {
   onCancel() {
     this.router.navigate(['../'], {relativeTo: this.route});
   }
+
 
 }

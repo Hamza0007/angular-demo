@@ -31,7 +31,7 @@ export class UserDetailComponent implements OnInit {
 
   onDeletePlayer() {
     this.dataStorageService.deleteUser(this.id);
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['/users']);
   }
 
 }

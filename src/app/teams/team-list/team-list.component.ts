@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 import 'rxjs/Rx';
 import { ActivatedRoute, Router } from "@angular/router";
 import { trigger, state, style, transition, animate } from "@angular/animations";
+import { UsersService } from "../../users/users.service";
 
 @Component({
   selector: 'app-team-list',
@@ -36,8 +37,10 @@ export class TeamListComponent implements OnInit, OnDestroy {
 
   teams: Array<Object>;
   subscription: Subscription;
+  filteredTeam = '';
 
-  constructor(private dataStorageService: DataStorageService, private teamsService: TeamsService,private router: Router, private route: ActivatedRoute ) { }
+  constructor(private dataStorageService: DataStorageService, private teamsService: TeamsService,
+              private router: Router, private route: ActivatedRoute, private userService: UsersService) { }
 
   ngOnInit() {
 
@@ -50,11 +53,17 @@ export class TeamListComponent implements OnInit, OnDestroy {
   }
 
   onNewTeam() {
-    this.router.navigate(['new'], {relativeTo: this.route});
+    this.router.navigate(['/team/new']);
   }
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
+  OnTeamClick(id: number) {
+    this.router.navigate(["/team/" + id]);
+  }
+
+
 
 }

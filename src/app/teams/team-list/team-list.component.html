@@ -1,21 +1,31 @@
-<div class="row">
+<div class="row" *ngIf="userService.isAdmin()">
   <div class="col-xs-12">
     <button class="btn btn-success" (click)="onNewTeam()">New Team</button>
   </div>
+  <hr>
 </div>
-<hr>
+
 <div class="row">
-  <div class="col-xs-12">
-    <a style="cursor: pointer"
-       [@list1]
-       [routerLink]="[team.id]"
-       routerLinkActive="active"
-       class="list-group-item clearfix"
-       *ngFor="let team of teams">
-      <div class="pull-left">
-        <h4 class="list-group-item-heading">{{ team.name }}</h4>
-        <p class="list-group-item-text">{{ team.country }}</p>
+  <div class="col-md-12">
+    <strong>Search: </strong>
+    <input type="text" [(ngModel)]="filteredTeam" class="form-control">
+  </div>
+</div>
+
+<div class="row m-t-100">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let team of teams | filter:filteredTeam:'name'; let i=index">
+        <a style="cursor: pointer" [@list1] class="list-group-item" (click)="OnTeamClick(team.id)">
+          <div align="center">
+            <img src="{{ team.image }}" class="img-responsive" style="height: 150px;">
+            <h4 class="list-group-item-heading text-center">{{ team.name }}</h4>
+          </div>
+        </a>
+        <div *ngIf="i>=2">
+          <br>
+        </div>
       </div>
-    </a>
+    </div>
   </div>
 </div>

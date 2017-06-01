@@ -1,0 +1,28 @@
+<div class="container m-t-100">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-2">
+      <div *ngIf="errorMessage !== ''">
+        <p class="alert alert-danger">{{ errorMessage }}</p>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Log In</h3>
+        </div>
+        <div class="panel-body">
+          <!-- Template Approach -->
+          <form (ngSubmit)="onSignInSubmit()" #f="ngForm" >
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input id="email" type="email" required name='email' [(ngModel)]="signInUser.email" class="form-control" email>
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input id="password" type="password" required name='password' [(ngModel)]="signInUser.password" class="form-control">
+            </div>
+            <button class="btn btn-success form-control" type="submit" [disabled]="!(f.valid) && f.touched">LogIn</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

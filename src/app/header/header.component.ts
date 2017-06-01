@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {DataStorageService} from "../shared/data-storage.service";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Angular2TokenService} from "angular2-token";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -8,10 +9,15 @@ import {DataStorageService} from "../shared/data-storage.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private dataStorageService: DataStorageService) { }
+  constructor(private tokenAuthService: Angular2TokenService, private router: Router) { }
 
   ngOnInit() {
-    this.dataStorageService.getTeams();
+  }
+
+  onLogOut() {
+    window.localStorage.clear();
+    this.tokenAuthService.signOut();
+    this.router.navigate(['signin']);
   }
 
 }

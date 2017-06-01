@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamsService } from "../teams.service";
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { DataStorageService } from "../../shared/data-storage.service";
+import {UsersService} from "../../users/users.service";
 
 @Component({
   selector: 'app-team-detail',
@@ -13,7 +14,9 @@ export class TeamDetailComponent implements OnInit {
   team: Object;
   id: number;
 
-  constructor(private teamsService: TeamsService, private route: ActivatedRoute, private router: Router, private dataStorageService: DataStorageService) {}
+  constructor(private teamsService: TeamsService, private route: ActivatedRoute,
+              private router: Router, private dataStorageService: DataStorageService,
+              private userService: UsersService) {}
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -30,7 +33,7 @@ export class TeamDetailComponent implements OnInit {
 
   onDeleteTeam() {
     this.dataStorageService.deleteTeam(this.id);
-    this.router.navigate(['../'], {relativeTo: this.route});
+    this.router.navigate(['/teams']);
   }
 
 }

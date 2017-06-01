@@ -1,3 +1,7 @@
 table > tbody > tr {
   outline-style: none;
 }
+
+.m-t-100 {
+  margin-top: 70px;
+}

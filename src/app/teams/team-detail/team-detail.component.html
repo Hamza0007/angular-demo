@@ -1,22 +1,19 @@
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong> Team Name:</strong>
-      <span>{{ team.name }}</span>
-    </p>
+<div class="row" align="center">
+  <div class="col-md-12">
+    <div class="col-md-12" align="center">
+       <img src="{{ team.image }}" class="img-responsive" style="max-height: 300px;">
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <p>
-      <strong> Team Country:</strong>
-      <span>{{ team.country }}</span>
-    </p>
+<div class="row" align="center">
+  <div class="col-md-12">
+    <h2>{{ team.name }}</h2>
+    <h3>({{ team.country }})</h3>
   </div>
 </div>
 
-<div class="row">
+<div class="row" *ngIf="userService.isAdmin()">
   <div class="col-xs-12">
     <div class="btn-group" appDropdown>
       <button type="button" class="btn btn-primary dropdown-toggle">Manage Team <span class="caret"></span></button>
@@ -34,15 +31,15 @@
     <ul class="list-group">
       <li class="list-group-item" *ngFor="let player of team.users">
         <p>
-          <strong> Player Name:</strong>
+          <strong>Name:</strong>
           <span>{{ player.name }}</span>
         </p>
         <p>
-          <strong> Player Matches:</strong>
+          <strong>Matches:</strong>
           <span>{{ player.matches }}</span>
         </p>
         <p>
-          <strong> Player Average:</strong>
+          <strong>Average:</strong>
           <span>{{ player.average }}</span>
         </p>
       </li>

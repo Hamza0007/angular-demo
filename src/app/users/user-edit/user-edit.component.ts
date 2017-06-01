@@ -39,7 +39,7 @@ export class UserEditComponent implements OnInit {
 
   private initForm()
   {
-    let userName = '', userAge = '', userMatches = '', userAverage = '';
+    let userName = '', userAge = '', userMatches = '', userAverage = '', userImage = '';
 
     if(this.editMode) {
       const user = this.userService.getUser(this.id);
@@ -47,6 +47,7 @@ export class UserEditComponent implements OnInit {
       userAge = user['age'];
       userMatches = user['matches'];
       userAverage = user['average'];
+      userImage = user['image'];
     }
 
     this.userForm = new FormGroup({
@@ -58,6 +59,7 @@ export class UserEditComponent implements OnInit {
       ]),
       'average': new FormControl(userAverage, Validators.required),
       'team_id': new FormControl(''),
+      'image': new FormControl(userImage)
     });
   }
 
@@ -67,7 +69,8 @@ export class UserEditComponent implements OnInit {
       'age': this.userForm.value['age'],
       'matches': this.userForm.value['matches'],
       'average': this.userForm.value['average'],
-      'team_id': this.userForm.value['team_id'] || ''
+      'team_id': this.userForm.value['team_id'] || '',
+      'image': this.userForm.value['image']
     };
 
     if(this.editMode) {

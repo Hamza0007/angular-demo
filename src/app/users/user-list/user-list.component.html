@@ -1,28 +1,31 @@
-<div class="row">
-  <div class="col-xs-12">
+<div class="row" *ngIf="userService.isAdmin()">
+  <div class="col-md-12">
     <button class="btn btn-success" (click)="onNewPlayer()">New Player</button>
   </div>
+  <hr>
 </div>
-<hr>
+
 <div class="row">
   <div class="col-md-12">
-    <table class="table">
-      <thead>
-      <tr>
-        <th class="col-md-4">Name</th>
-        <th class="col-md-2">Matches</th>
-        <th class="col-md-2">Average</th>
-        <th class="col-md-2">Team</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr style="cursor: pointer;" [@user-list] [routerLink]="[user.id]" routerLinkActive="active" *ngFor="let user of users">
-        <td class="col-md-4">{{ user.name }}</td>
-        <td class="col-md-2">{{ user.matches }}</td>
-        <td class="col-md-2">{{ user.average }}</td>
-        <td class="col-md-2">{{ getTeamName(user.team) }}</td>
-      </tr>
-      </tbody>
-    </table>
+    <strong>Search: </strong>
+    <input type="text" [(ngModel)]="filteredUser" class="form-control">
+  </div>
+</div>
+
+<div class="row m-t-100">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3" *ngFor="let user of users | filter:filteredUser:'name'; let i=index">
+        <a style="cursor: pointer" [@user-list] class="list-group-item" (click)="onUserClick(user.id)">
+          <div align="center">
+            <img src="{{ user.image }}" class="img-responsive" style="height: 150px;">
+            <h4 class=" text-center">{{ user.name }}</h4>
+          </div>
+        </a>
+        <div class="clearfix" *ngIf="i>=2">
+          <br>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -1,54 +1,58 @@
-<div class="container">
-  <h3>Player Information:</h3>
-  <div class="row">
-    <div class="col-md-12">
-      <p class="col-md-4">
-        <strong> Name:</strong>
-        <span>{{ user.name }}</span>
-      </p>
-      <p class="col-md-2">
-        <strong> Age:</strong>
-        <span>{{ user.age }}</span>
-      </p>
-    </div>
+<div class="row" align="left">
+  <div class="col-md-12">
+    <img src="{{ user.image }}" class="img-responsive" style="max-height: 300px;">
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <p class="col-md-4">
-        <strong> Matches:</strong>
-        <span>{{ user.matches }}</span>
-      </p>
-      <p class="col-md-2">
-        <strong> Average:</strong>
-        <span>{{ user.average }}</span>
-      </p>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Player Information:</h3>
+    <p class="col-md-4">
+      <strong> Name:</strong>
+      <span>{{ user.name }}</span>
+    </p>
+    <p class="col-md-2">
+      <strong> Age:</strong>
+      <span>{{ user.age }}</span>
+    </p>
   </div>
+</div>
 
-  <div class="row" *ngIf="teamPresent">
-    <div class="col-md-12">
-      <h3>Team Information:</h3>
-      <p class="col-md-4">
-        <strong> Name:</strong>
-        <span>{{ user.team.name }}</span>
-      </p>
-      <p class="col-md-2">
-        <strong> Country:</strong>
-        <span>{{ user.team.country }}</span>
-      </p>
-    </div>
+<div class="row">
+  <div class="col-md-12">
+    <p class="col-md-4">
+      <strong> Matches:</strong>
+      <span>{{ user.matches }}</span>
+    </p>
+    <p class="col-md-2">
+      <strong> Average:</strong>
+      <span>{{ user.average }}</span>
+    </p>
   </div>
+</div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="btn-group" appDropdown>
-        <button type="button" class="btn btn-primary dropdown-toggle">Manage Player <span class="caret"></span></button>
-        <ul class="dropdown-menu">
-          <li><a style="cursor: pointer" (click)="onEditPlayer()">Edit Player</a></li>
-          <li><a style="cursor: pointer" (click)="onDeletePlayer()">Delete Player</a></li>
-        </ul>
-      </div>
+<div class="row" *ngIf="teamPresent">
+  <div class="col-md-12">
+    <h3>Team Information:</h3>
+    <p class="col-md-4">
+      <strong> Name:</strong>
+      <span>{{ user.team.name }}</span>
+    </p>
+    <p class="col-md-2">
+      <strong> Country:</strong>
+      <span>{{ user.team.country }}</span>
+    </p>
+  </div>
+</div>
+
+<div class="row" *ngIf="userService.isAdmin()">
+  <div class="col-md-12">
+    <div class="btn-group" appDropdown>
+      <button type="button" class="btn btn-primary dropdown-toggle">Manage Player <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+        <li><a style="cursor: pointer" (click)="onEditPlayer()">Edit Player</a></li>
+        <li><a style="cursor: pointer" (click)="onDeletePlayer()">Delete Player</a></li>
+      </ul>
     </div>
   </div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataStorageService } from "../shared/data-storage.service";
+import { Angular2TokenService } from "angular2-token";
 
 @Component({
   selector: 'app-teams',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeamsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService, private tokenAuthService: Angular2TokenService) { }
 
   ngOnInit() {
+    if(this.tokenAuthService.userSignedIn()) {
+      this.dataStorageService.getTeams();
+    }
   }
 
 }
