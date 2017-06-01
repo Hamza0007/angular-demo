@@ -11,12 +11,12 @@ import {UsersService} from "../../users/users.service";
 })
 export class TeamDetailComponent implements OnInit {
 
-  team: Object;
+  team: any;
   id: number;
 
   constructor(private teamsService: TeamsService, private route: ActivatedRoute,
               private router: Router, private dataStorageService: DataStorageService,
-              private userService: UsersService) {}
+              public userService: UsersService) {}
 
   ngOnInit() {
     this.route.params.subscribe(

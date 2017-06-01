@@ -40,7 +40,7 @@ export class TeamListComponent implements OnInit, OnDestroy {
   filteredTeam = '';
 
   constructor(private dataStorageService: DataStorageService, private teamsService: TeamsService,
-              private router: Router, private route: ActivatedRoute, private userService: UsersService) { }
+              private router: Router, private route: ActivatedRoute, public userService: UsersService) { }
 
   ngOnInit() {
 

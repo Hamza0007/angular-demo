@@ -11,10 +11,11 @@ import {TeamsService} from "../../teams/teams.service";
 })
 export class UserDetailComponent implements OnInit {
 
-  user: Object;
+  user: any;
   id: number;
+  teamPresent: boolean;
 
-  constructor(private userService: UsersService, private route: ActivatedRoute, private router: Router, private dataStorageService: DataStorageService) { }
+  constructor(public userService: UsersService, private route: ActivatedRoute, private router: Router, private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -23,12 +24,24 @@ export class UserDetailComponent implements OnInit {
         this.user = this.userService.getUser(this.id);
       }
     );
+    this.setTeamBoolean(this.userService.getUser(this.id));
   }
 
   onEditPlayer() {
     this.router.navigate(['edit'], {relativeTo: this.route});
   }
 
+  setTeamBoolean(user) {
+    if(user === undefined) {
+      this.teamPresent = false;
+    }
+    else if (user.team === undefined) {
+      this.teamPresent = false;
+    }
+    else {
+      this.teamPresent = true;
+    }
+  }
   onDeletePlayer() {
     this.dataStorageService.deleteUser(this.id);
     this.router.navigate(['/users']);

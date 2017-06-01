@@ -37,7 +37,7 @@ export class UserListComponent implements OnInit, OnDestroy {
   subscription: Subscription;
   filteredUser = '';
 
-  constructor(private dataStorageService: DataStorageService, private userService: UsersService,
+  constructor(private dataStorageService: DataStorageService, public userService: UsersService,
               private router: Router, private route: ActivatedRoute ) { }
 
   ngOnInit() {
